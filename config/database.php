@@ -84,7 +84,7 @@ return [
        	    'host' => env('DB_HOST', 'localhost'),
        	    'database' => env('DB_DATABASE','AccountServer'),
        	    'username' => env('DB_USERNAME','sa'),
-       	    'password' => env('DB_PASSWORD','Klaustreich!'),
+       	    'password' => env('DB_PASSWORD','password'),
        	    'prefix' => '',
 
        ],
@@ -94,7 +94,7 @@ return [
        	    'host' => env('DB_2_HOST', 'localhost'),
        	    'database' => env('DB_2_DATABASE','GameDB'),
        	    'username' => env('DB_2_USERNAME','sa'),
-       	    'password' => env('DB_2_PASSWORD','Klaustreich!'),
+       	    'password' => env('DB_2_PASSWORD','password'),
        	    'prefix' => '',
 
        ],
