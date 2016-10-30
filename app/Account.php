@@ -1,24 +1,27 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 /**
  * Class Account
  * @package App\Models
  * @version October 18, 2016, 4:29 am UTC
  */
-class Account extends Model
+class Account extends Authenticatable
 {
-    use SoftDeletes;
 
     public $table = 'account';
     protected $connection = 'GameDB';
+    public $timestamps = false;
+    public $primaryKey = 'act_id';
 
 
     public $fillable = [
+        'act_id',
         'act_name',
         'gm',
         'cha_ids',
@@ -70,6 +73,6 @@ class Account extends Model
      **/
     public function characters()
     {
-        return $this->hasMany(\App\Models\Character::class);
+        return $this->hasMany(\App\Character::class);
     }
 }

@@ -153,7 +153,7 @@ class Character extends Model
      **/
     public function account()
     {
-        return $this->belongsTo(\App\Models\Account::class);
+        return $this->belongsTo(\App\Account::class);
     }
 
     /**
@@ -161,6 +161,6 @@ class Character extends Model
      **/
     public function items()
     {
-        return $this->hasMany(\App\Models\Item::class);
+        return $this->hasMany(\App\Item::class);
     }
 }

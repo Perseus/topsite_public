@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\AccountLogin;
+use App\AccountLogin;
 use InfyOm\Generator\Common\BaseRepository;
 
 class AccountLoginRepository extends BaseRepository

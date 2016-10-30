@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class AccountLogin extends Authenticatable
 {
-    use SoftDeletes;
 
     public $table = 'account_login';
     protected $connection = 'AccountServer';
@@ -78,5 +77,36 @@ class AccountLogin extends Authenticatable
         
     ];
 
-    
+      public function getAuthPassword()
+      {
+          return $this->password;
+      }
+
+      public function getRememberToken()
+          {
+            return null; // not supported
+          }
+
+      public function setRememberToken($value)
+          {
+            // not supported
+          }
+
+      public function getRememberTokenName()
+      {
+        return null; // not supported
+      }
+
+      /**
+       * Overrides the method to ignore the remember token.
+       */
+      public function setAttribute($key, $value)
+      {
+        $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+        if (!$isRememberTokenAttribute)
+        {
+          parent::setAttribute($key, $value);
+        }
+      }
+        
 }

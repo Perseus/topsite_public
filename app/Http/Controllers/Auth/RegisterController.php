@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\AccountLogin;
+use App\AccountLogin;
+use App\Account;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Request;
-
+use Log;
 class RegisterController extends Controller
 {
     /*
@@ -63,7 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return AccountLogin::create([
+        // insert in account_login
+        $account =  AccountLogin::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => md5($data['password']),
@@ -71,5 +73,18 @@ class RegisterController extends Controller
             'register_ip' => Request::ip(),
             'ban' => 0
         ]);
+        // insert in gamedb
+        $game = Account::create([
+            'act_id' => $value,
+            'act_name' => ''.$account->name.'',
+            'gm' => 0, // unless you want it to be 99 for everyone, lol
+            'mall_points' => 0,
+            'credits' => 0
+            // add more columns here if you have more stuff in your database
+            // format is 'column_name' => default_value,
+            ]);
+
+        return $game;
+
     }
 }

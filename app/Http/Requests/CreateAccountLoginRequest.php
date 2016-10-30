@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\AccountLogin;
+use App\AccountLogin;
 
 class CreateAccountLoginRequest extends FormRequest
 {

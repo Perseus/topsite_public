@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlsrv'),
+    'default' => env('DB_CONNECTION', 'AccountServer'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,10 +91,10 @@ return [
 
         'GameDB' => [
        	    'driver' => 'sqlsrv',
-       	    'host' => env('DB_HOST', 'localhost'),
-       	    'database' => env('DB_DATABASE','GameDB'),
-       	    'username' => env('DB_USERNAME','sa'),
-       	    'password' => env('DB_PASSWORD','Klaustreich!'),
+       	    'host' => env('DB_2_HOST', 'localhost'),
+       	    'database' => env('DB_2_DATABASE','GameDB'),
+       	    'username' => env('DB_2_USERNAME','sa'),
+       	    'password' => env('DB_2_PASSWORD','Klaustreich!'),
        	    'prefix' => '',
 
        ],
