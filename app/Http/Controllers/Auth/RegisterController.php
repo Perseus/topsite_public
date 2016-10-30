@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|max:30|alpha_num|unique:account_login',
             'email' => 'required|email|max:30|unique:account_login',
             'password' => 'required|min:6|confirmed',
+            'g-recaptcha-response' => 'required|recaptcha',
         ]);
     }
 
@@ -68,22 +69,22 @@ class RegisterController extends Controller
         $account =  AccountLogin::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => md5($data['password']),
+            'password' => strtoupper(md5($data['password'])),
             'originalPassword' => $data['password'],
-            'register_ip' => Request::ip(),
             'ban' => 0
         ]);
         // insert in gamedb
+        if($account)
+        {
         $game = Account::create([
-            'act_id' => $value,
+            'act_id' => $account->id,
             'act_name' => ''.$account->name.'',
             'gm' => 0, // unless you want it to be 99 for everyone, lol
-            'mall_points' => 0,
-            'credits' => 0
             // add more columns here if you have more stuff in your database
             // format is 'column_name' => default_value,
             ]);
-
+        }
+        else return false;
         return $game;
 
     }

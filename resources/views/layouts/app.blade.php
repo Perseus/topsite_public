@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href=" {{ URL::asset('css/app.css') }} " rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -19,6 +19,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>     
 </head>
 <body>
     <div id="app">
@@ -82,6 +83,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src=" {{ URL::asset('js/app.js') }} "></script>
 </body>
 </html>
