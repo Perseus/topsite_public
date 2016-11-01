@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href=" {{ URL::asset('css/app.css') }} " rel="stylesheet">
+    <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href=" {{ URL::asset('css/testblog.css') }} ">
 
     <!-- Scripts -->
     <script>
@@ -22,6 +25,14 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>     
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -78,9 +89,96 @@
                 </div>
             </div>
         </nav>
+        
+  
 
-        @yield('content')
-    </div>
+
+
+            <div class="container">
+           
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-0">
+                        <div class="panel panel-default">
+                        @if (Auth::guest())
+                            <div class="panel-heading">Quick Links</div>
+                            <div class="panel-body">
+                            <ul class="list-unstyled">
+                              <li>    <a href=" {{ url('/login') }}" > Login</a> </li>
+                              <li>    <a href=" {{ url('/register') }} ">   Register</a>  </li>
+                              <li>    <a href=" {{ url('/downloads') }} "> Downloads </a> </li>
+                              <li>    <a href=" {{ url('/ranking') }} "> Rankings </a> </li>
+                            </ul>
+                            </div>  
+                         @else
+                            <div class="panel-heading"> Account </div>
+                            <div class="panel-body">
+
+                            Name : <span class="username">  {{ Auth::user()->name }} </span>
+                               </div>
+                        @endif
+                         
+                        </div>
+                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading"> Server Statistics </div>
+                            <div class="panel-body">
+                            <ul class="list-unstyled">
+                                <li>   Accounts : <span> 10 </span> </li>
+                                <li>   Characters : <span> 20 </span> </li>
+                                <li>   Guilds : <span> 5 </span> </li>
+                                <li>   Current Online : <span> 15 </span> </li>
+                                <li>   Online record : <span> 20 </span> </li>
+                            </div>
+                        </div>
+
+                         <div class="panel panel-default">
+                            <div class="panel-heading"> Server Information </div>
+                            <div class="panel-body">
+                            <ul class="list-unstyled">
+                                <li>   Solo EXP Rate : <span> {{ env('SOLO_EXP') }}x </span> </li>
+                                <li>   Party EXP Rate : <span> {{ env('PARTY_EXP') }}x </span> </li>
+                                <li>   Drop Rate : <span> {{ env('DROP_RATE') }}x  </span> </li>
+                                <li>   Ship EXP Rate : <span> {{ env('SHIP_EXP')}}x  </span> </li>
+                            </div>
+                        </div>
+                   
+                    </div>
+
+               
+                    @yield('content')
+                    <div class="col-md-3 col-md-offset-0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Staff Online</div>
+
+                            <div class="panel-body">    
+                                    None
+                            </div>  
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">  Social networks </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"> <div class="fb-page" 
+                                              data-href="https://www.facebook.com/facebook"
+                                              data-width="380" 
+                                              data-hide-cover="false"
+                                              data-show-facepile="false" 
+                                              data-show-posts="false"></div></li>
+                                        <li class="list-group-item"> <a class="twitter-timeline"   data-tweet-limit="1" href="https://twitter.com/TwitterDev">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+              
+
+            </div>
+
+</div>
 
     <!-- Scripts -->
     <script src=" {{ URL::asset('js/app.js') }} "></script>
