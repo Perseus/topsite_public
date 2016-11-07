@@ -46,9 +46,9 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'SiteInfo' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('SITE_INFO_DB_FILE', database_path('database.sqlite')),
             'prefix' => '',
         ],
 

@@ -4,3 +4,7 @@
 	background-color: #ffffff;
 }
 
+.alert {
+   width:40%;    
+}
+a { color: inherit; background-color: none;} 

@@ -108,5 +108,15 @@ class AccountLogin extends Authenticatable
           parent::setAttribute($key, $value);
         }
       }
+
+      public function accounts()
+      {
+        return $this->hasOne('App\Account','act_id');
+      }
+
+      public function isAdmin()
+      {
+        return ($this->accounts->gm) > 0 ? true : false;
+      }
         
 }

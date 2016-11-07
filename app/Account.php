@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent as Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 
 /**
@@ -75,4 +76,14 @@ class Account extends Authenticatable
     {
         return $this->hasMany(\App\Character::class);
     }
+
+    /**
+     * @return \Illuminate\Datbase\Eloquent\Relations\Has
+     */
+
+    public function accountlogins()
+    {
+        return $this->belongsTo('App\AccountLogin','id');
+    }
+
 }

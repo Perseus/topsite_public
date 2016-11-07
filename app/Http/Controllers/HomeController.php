@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Account;
 
 class HomeController extends Controller
 {
@@ -13,6 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        
     }
 
     /**

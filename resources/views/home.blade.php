@@ -3,7 +3,7 @@
 @section('content')
 
    
-        <div class="col-md-5 col-md-offset-0">
+        <div class="col-md-6 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">Feed</div>
 

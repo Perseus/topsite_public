@@ -14,7 +14,6 @@
     <link href=" {{ URL::asset('css/app.css') }} " rel="stylesheet">
     <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href=" {{ URL::asset('css/testblog.css') }} ">
 
     <!-- Scripts -->
     <script>
@@ -22,7 +21,10 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>     
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
+  
+    <script src='https://www.google.com/recaptcha/api.js'></script> 
 </head>
 <body>
 <div id="fb-root"></div>
@@ -41,7 +43,7 @@
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar">aaaaaaaa</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
@@ -97,9 +99,10 @@
             <div class="container">
            
                 <div class="row">
-                    <div class="col-md-3 col-md-offset-0">
-                        <div class="panel panel-default">
+                    <div class="col-md-2 col-md-offset-0">
+                      
                         @if (Auth::guest())
+                          <div class="panel panel-default">
                             <div class="panel-heading">Quick Links</div>
                             <div class="panel-body">
                             <ul class="list-unstyled">
@@ -109,15 +112,40 @@
                               <li>    <a href=" {{ url('/ranking') }} "> Rankings </a> </li>
                             </ul>
                             </div>  
+                            </div>
                          @else
+                             @if(Auth::user()->isAdmin())
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> Admin pages </div>
+                                <div class="panel-body">
+                                    <ul class="list-unstyled">
+                                        <li> <a href="{{ url('admin/news/') }}"> News </a> </li>
+                                        <li> <a href="{{ url('admin/downloads/') }}"> Downloads </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                             @endif
+                           <div class="panel panel-default">
                             <div class="panel-heading"> Account </div>
                             <div class="panel-body">
 
                             Name : <span class="username">  {{ Auth::user()->name }} </span>
                                </div>
+                            </div>
+                               <div class="panel panel-default">
+                            <div class="panel-heading">Quick Links</div>
+                            <div class="panel-body">
+                            <ul class="list-unstyled">
+
+                              <li>    <a href=" {{ url('/downloads') }} "> Downloads </a> </li>
+                              <li>    <a href=" {{ url('/ranking') }} "> Rankings </a> </li>
+                            </ul>
+                            </div>  
+                            </div>
                         @endif
+
                          
-                        </div>
+                    
                    
                         <div class="panel panel-default">
                             <div class="panel-heading"> Server Statistics </div>
@@ -174,7 +202,9 @@
 
                     </div>
                 </div>
-              
+            <footer>
+                    FOOTER HERE
+            </footer>
 
             </div>
 
@@ -182,5 +212,6 @@
 
     <!-- Scripts -->
     <script src=" {{ URL::asset('js/app.js') }} "></script>
+
 </body>
 </html>
