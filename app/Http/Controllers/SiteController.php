@@ -293,4 +293,159 @@ class SiteController extends Controller
 
             return view('admin.site.newsedit',compact('messages','news','categories'));
     }
+
+    public function addDownload()
+    {
+
+        $messages = array();
+        $categories = DownloadsCategory::all();
+        $authors = DownloadsAuthor::all();
+
+
+        return view('admin.site.downloadsadd',compact('messages','categories','authors'));
+    }
+
+    public function postDownload(Request $request)
+    {
+        $messages = array();
+        $categories = DownloadsCategory::all();
+        $authors = DownloadsAuthor::all();
+
+            $errors = array();
+        if($request->authorName == NULL)
+        {
+            $errors[] = [
+                            'identifier' => 'authorError',
+                            'type' => 'danger',
+                           'heading' => 'Error',
+                           'content' => 'No author selected'];
+        }
+        if($request->type == NULL)
+        {   
+            $errors[] = [   'identifier' => 'typeError',
+                            'type' => 'danger',
+                           'heading' => 'Error',
+                           'content' => 'No download type selected'];
+        }   
+        if($request->title == "")
+        {
+            $errors[] = [ 'identifier' => 'titleError',
+                          'type' => 'danger',
+                          'heading' => 'Error',
+                          'content' => 'No title entered'];
+        }
+        if($request->url == "")
+        {
+            $errors[] = ['identifier' => 'contentError',
+                          'type' => 'danger',
+                           'heading' => 'Error',
+                           'content' => 'No URL entered '];
+        }
+        //XSS checks
+        // check if author exists
+        $author = DownloadsAuthor::where(['name' => $request->authorName])->first();
+            if($author == NULL)
+            {
+                $errors[] = ['identifier' => 'authorNotExistsError',
+                             'type' => 'danger',
+                             'heading' => 'Error',
+                             'content' => 'Author '.$request->authorName.' does not exist. '];
+            }
+        // check if given category exists
+        $category = DownloadsCategory::where(['type' => $request->type])->first();
+            if($category == NULL)
+            {
+                $errors[] = ['identifier' => 'typeNotExistsError',
+                             'type' => 'danger',
+                             'heading' => 'Error',
+                             'content' => 'Category '.$request->type.' does not exist. '];
+            }
+        if(count($errors) > 0)
+        {
+            $messages = $errors;
+
+            return view('admin.site.downloadsadd',compact('messages','categories','authors'));
+        }
+
+        $download = new Downloads;
+        $download->title = $request->title;
+        $download->type = $request->type;
+        $download->author = $request->authorName;
+        $download->url = $request->url;
+        if($download->save())
+        {
+            $messages[] = ['identifier' => 'downloadCreatedSuccess',
+                            'type' => 'success',
+                            'heading' => 'Success',
+                            'content' => 'Download was successfully added' ];
+        }
+        else
+            $messages[] = ['identifier' => 'downloadCreatedError',
+                            'type' => 'danger',
+                            'heading' => 'Error',
+                            'content' => 'Download could not be added. '];
+
+            return view('admin.site.downloadsadd',compact('messages','categories','authors')); 
+
+    }
+
+    /**
+     * edit downloads - GET
+     */
+
+  public function editDownload($id)
+    {
+            $messages = array();
+            $categories = DownloadsCategory::all();
+        // check if download exists
+            $download = Downloads::where(['id' => $id])->first();
+            if($download != NULL)
+                {
+                        // go on.
+                    
+                    return view('admin.site.downloadsedit',compact('messages','download','categories'));
+
+                }
+    }
+
+    /**
+     * edit download with id - POST
+     */
+
+    public function changeDownload($id, Request $request)
+    {
+            $messages = array();
+            $categories = DownloadsCategory::all();
+                // check if download exists
+            $download = Downloads::where(['id' => $id])->first();
+                if($download != NULL)
+                {
+                    $download->title = $request->title;
+                    $download->url = $request->url;
+                    $download->type = $request->type;
+                    if($download->save())
+                    {
+                        $messages[] = ["identifier" => "downloadUpdateSuccess",
+                                       "type" => "success",
+                                       "title" => "Success",
+                                       "content" => "Download was successfully updated"];
+
+
+                    }
+                    else
+                         $messages[] = ["identifier" => "downloadUpdateError",
+                                       "type" => "danger",
+                                       "title" => "Failure",
+                                       "content" => "Download was not updated"];
+
+                }
+                else
+                     $messages[] = ["identifier" => "downloadNotFoundError",
+                                       "type" => "danger",
+                                       "title" => "Error",
+                                       "content" => "Download was not found"];
+
+            return view('admin.site.downloadsedit',compact('messages','download','categories'));
+    }
+
 }

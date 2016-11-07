@@ -49,9 +49,10 @@ Route::get('admin/downloads', 'SiteController@downloads');
 Route::get('admin/downloads/add','SiteController@addDownload');
 Route::post('admin/downloads/add','SiteController@postDownload');
 Route::get('admin/downloads/edit/{id}','SiteController@editDownload');
-Route::get('admin/downloads/edit/{id}','SiteController@changeDownload');
+Route::post('admin/downloads/edit/{id}','SiteController@changeDownload');
 Route::get('admin/downloads/delete/{id}','SiteController@deleteDownload');
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/downloads','HomeController@downloads');
 

@@ -5,6 +5,7 @@
 @section('content')
 
 		<div class="col-md-6 col-md-offset-0">
+	
 			@if(count($messages) > 0)
 				@foreach($messages as $message)
 				<div class="panel panel-{{ $message['type'] }}" id="errorPanel{{ $message['identifier'] }}"> 
@@ -49,7 +50,7 @@
 
 					       <div class="pure-control-group dropdown">
 						        @if( count($categories) > 0)
-						       	<label for="type"> News type </label>
+						       	<label for="type"> Download type </label>
 						       		<select name="type" class="pure-control-group">
 						       			@foreach($categories as $category)
 						       				<option value="{{$category->type}}"> {{$category->type }} </option>

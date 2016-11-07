@@ -28,7 +28,9 @@
 			</div>
 				{{ $downloadItems->links() }}
 					
-			
+			<div class="panel panel-default">
+				<div class="panel-heading"> <a href="{{ url('admin/downloads/add') }} "><span class="glyphicon glyphicon-plus"></span>	Add downloads </div> </a>
+			</div>
 		</div>
 
 @endsection

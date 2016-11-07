@@ -14,7 +14,7 @@
     <link href=" {{ URL::asset('css/app.css') }} " rel="stylesheet">
     <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -49,7 +49,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -203,8 +203,22 @@
                     </div>
                 </div>
             <footer>
-                    FOOTER HERE
-            </footer>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="pull-left"> There's no copyright here lel. Use as you wish. Just leave this here-> powered by topCMS 1.0.0 </p>
+            <div class="pull-right">
+                <ul class="nav nav-pills payments">
+                    <li><i class="fa fa-cc-visa"></i></li>
+                    <li><i class="fa fa-cc-mastercard"></i></li>
+                    <li><i class="fa fa-cc-amex"></i></li>
+                    <li><i class="fa fa-cc-paypal"></i></li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    <!--/.footer-bottom--> 
+</footer>
 
             </div>
 
