@@ -41,6 +41,8 @@ Route::get('/admin/news/add','SiteController@addNews');
 Route::post('/admin/news/add','SiteController@postNews');
 Route::get('/admin/authors/add','SiteController@addAuthors');
 Route::post('/admin/authors/add','SiteController@postAuthors');
+Route::get('/admin/categories/add','SiteController@addCategories');
+Route::post('/admin/categories/add','SiteController@postCategories');
 Route::get('/admin/news/edit/{id}','SiteController@editNews');
 Route::post('/admin/news/edit/{id}','SiteController@changeNews');
 Route::get('/admin/news/delete/{id}','SiteController@deleteNews');
@@ -55,4 +57,5 @@ Route::get('admin/downloads/delete/{id}','SiteController@deleteDownload');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/downloads','HomeController@downloads');
+Route::get('/ranking','HomeController@ranking');
 

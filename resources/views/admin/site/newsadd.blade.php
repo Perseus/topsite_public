@@ -50,7 +50,7 @@
 
 					       <div class="pure-control-group dropdown">
 						        @if( count($categories) > 0)
-						       	<label for="type"> Download type </label>
+						       	<label for="type"> News type </label>
 						       		<select name="type" class="pure-control-group">
 						       			@foreach($categories as $category)
 						       				<option value="{{$category->type}}"> {{$category->type }} </option>
