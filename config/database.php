@@ -86,6 +86,7 @@ return [
        	    'username' => env('DB_USERNAME','sa'),
        	    'password' => env('DB_PASSWORD','password'),
        	    'prefix' => '',
+            'pooling' => 'false',
 
        ],
 
@@ -96,6 +97,7 @@ return [
        	    'username' => env('DB_2_USERNAME','sa'),
        	    'password' => env('DB_2_PASSWORD','password'),
        	    'prefix' => '',
+            'pooling' => 'false',
 
        ],
 
