@@ -121,6 +121,7 @@
                                     <ul class="list-unstyled">
                                         <li> <a href="{{ url('admin/news/') }}"> News </a> </li>
                                         <li> <a href="{{ url('admin/downloads/') }}"> Downloads </a> </li>
+                                        <li> <a href="{{ url('admin/categories/add') }}"> Add categories </a> </li>
                                     </ul>
                                 </div>
                             </div>
