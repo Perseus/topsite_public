@@ -119,9 +119,10 @@
                                 <div class="panel-heading"> Admin pages </div>
                                 <div class="panel-body">
                                     <ul class="list-unstyled">
-                                        <li> <a href="{{ url('admin/news/') }}"> News </a> </li>
-                                        <li> <a href="{{ url('admin/downloads/') }}"> Downloads </a> </li>
-                                        <li> <a href="{{ url('admin/categories/add') }}"> Add categories </a> </li>
+                                        <li> <a href="{{ url('admin/news/') }}"> Manage: News </a> </li>
+                                        <li> <a href="{{ url('admin/downloads/') }}"> Manage: Downloads </a> </li>
+                                        <li> <a href="{{ url('admin/categories/add') }}"> Manage: Categories </a> </li>
+                                        <li> <a href="{{ url('admin/authors/add') }}"> Manage: Authors </a> </li>
                                     </ul>
                                 </div>
                             </div>
