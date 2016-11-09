@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Guild extends Model
 {
-    use SoftDeletes;
 
     public $table = 'guild';
     protected $connection = 'GameDB';
+    public $timestamps = false;
 
 
     public $fillable = [
@@ -59,5 +59,21 @@ class Guild extends Model
         
     ];
 
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function character()
+    {
+        return $this->belongsTo(\App\Character::class);
+    }
+
+    /**
+     * @return \App\Character\
+     */
+    public function getleaderidAttribute($value)
+    {
+        return Character::where('cha_id',$value)->first()->cha_name;
+
+    }
     
 }

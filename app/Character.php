@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Character
@@ -12,11 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Character extends Model
 {
-    use SoftDeletes;
 
     public $table = 'character';
     protected $connection = 'GameDB';
-
+    protected $primaryKey = 'cha_id';
 
     public $fillable = [
         'cha_name',
@@ -153,7 +151,7 @@ class Character extends Model
      **/
     public function account()
     {
-        return $this->belongsTo(\App\Account::class);
+        return $this->belongsTo(\App\Account::class,'act_id');
     }
 
     /**
@@ -163,4 +161,21 @@ class Character extends Model
     {
         return $this->hasMany(\App\Item::class);
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+
+    public function guild()
+    {
+        return $this->hasOne(\App\Guild::class);
+    }
+
+    public function getJob()
+    {
+        return 'lol';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
 }

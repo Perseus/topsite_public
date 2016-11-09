@@ -74,16 +74,16 @@ class Account extends Authenticatable
      **/
     public function characters()
     {
-        return $this->hasMany(\App\Character::class);
+        return $this->hasMany(\App\Character::class,'act_id');
     }
 
     /**
      * @return \Illuminate\Datbase\Eloquent\Relations\Has
      */
 
-    public function accountlogins()
+    public function accountlogin()
     {
-        return $this->belongsTo('App\AccountLogin','id');
+        return $this->belongsTo(\App\AccountLogin::class,'act_id');
     }
 
 }

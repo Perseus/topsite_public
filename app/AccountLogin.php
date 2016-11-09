@@ -111,7 +111,7 @@ class AccountLogin extends Authenticatable
 
       public function accounts()
       {
-        return $this->hasOne('App\Account','act_id');
+        return $this->hasOne(\App\Account::class,'act_id');
       }
 
       public function isAdmin()
