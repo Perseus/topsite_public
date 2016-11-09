@@ -515,4 +515,31 @@ class SiteController extends Controller
             return view('admin.site.downloadsedit',compact('messages','download','categories'));
     }
 
+    /**
+     * delete download with id
+     */
+    public function deleteDownload($id)
+    {
+        // check if download exists
+            
+            $download = Downloads::where(['id' => $id]);
+            if($download->first() != NULL)
+            {
+                if($download->delete())
+                {
+                    $messages[] = ['type' => 'success',
+                                    'heading' => 'Success',
+                                    'content' => 'Download was successfully deleted' ];
+                }
+            }
+            else
+                $messages[] = ['type' => 'danger',
+                                'heading' => 'Error',
+                                'content' => ' Download with id '.$id.' could not be found. '];
+            $downloadItems = Downloads::paginate(10);
+
+
+            return view('admin.site.downloads',compact('messages','downloadItems'));
+    }
+
 }
