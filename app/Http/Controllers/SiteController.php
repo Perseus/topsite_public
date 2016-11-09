@@ -108,6 +108,73 @@ class SiteController extends Controller
     	 	return view('admin.site.authorsadd',compact('messages'));
    	}
 
+    /**
+     * adding categories - GET
+     */
+    public function addCategories()
+    {
+
+        $messages = array();
+        return view('admin.site.categoriesadd',compact('messages'));
+    }
+    /**
+     * adding categories - POST
+     */
+    public function postCategories(Request $request)
+    {
+        $messages = array();
+        $errors = array();
+
+
+        if($request->name == NULL || $request->name == "")
+        {
+            $errors[] = ['identifier' => 'nameError',
+                         'type' => 'danger',
+                         'title' => 'Error',
+                         'content' => 'No category name given'];
+
+        }
+        if($request->type == NULL)
+        {
+            $errors[] = ['identifier' => 'typeError',
+                         'type' => 'danger',
+                         'title' => 'Error',
+                         'content' => 'No category type given'];
+        }
+
+        if(count($errors) > 0)
+        {
+            $messages = $errors;
+            return view('admin.site.categoriesadd',compact('messages'));
+        }
+
+        if($request->type == 'News')
+        {
+            $categ = new NewsCategory;
+            $categ->type = $request->name;
+        }
+        else{
+                    $categ = new DownloadsCategory;
+                    $categ->type = $request->name;
+            }
+         if($categ->save())
+         {
+            $messages[] = ['identifier' => 'categorySuccess',
+                            'type' => 'success',
+                            'title' => 'Success',
+                            'content' => 'Category '.$request->name.' was saved in the category - '.$request->type.' categories.'];
+         }
+         else
+         {
+            $messages[] = ['identifier' => 'categoryError',
+                            'type' => 'danger',
+                            'title' => 'Error',
+                            'content' => 'Category could not be created'];
+         }
+
+            return view('admin.site.categoriesadd',compact('messages'));
+    }
+
    	/**
    	 * adding news - GET
    	 */
