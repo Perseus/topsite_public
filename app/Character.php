@@ -3,6 +3,8 @@
 namespace App;
 
 use Eloquent as Model;
+use Config;
+use App\Guild;
 
 /**
  * Class Character
@@ -15,6 +17,7 @@ class Character extends Model
     public $table = 'character';
     protected $connection = 'GameDB';
     protected $primaryKey = 'cha_id';
+    protected $appends = array('chartype','guildname');
 
     public $fillable = [
         'cha_name',
@@ -170,12 +173,54 @@ class Character extends Model
         return $this->hasOne(\App\Guild::class);
     }
 
-    public function getJob()
+    /**
+     * @return JobName
+     * checks whether the job exists in the job database. 
+     * if not, just return as is, otherwise return the corresponding job
+     */
+
+    public function getJobAttribute($value)
     {
-        return 'lol';
+        if(Config::has('job.'.$value))
+        {
+            return Config::get('job.'.$value);
+        }
+        else
+            return $value;
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return string charType
+     * checks the look column, gets char type value and then returns the character type in string
      */
+
+    public function getchartypeAttribute()
+    {
+        $lookColumn = $this->look;
+        $lookColumn = explode(',',$lookColumn)[0];
+        $lookColumn = explode('#',$lookColumn)[1];
+        if(Config::has('chartype.'.$lookColumn))
+        {
+            return Config::get('chartype.'.$lookColumn);
+        }
+        else
+        return $lookColumn;
+    }
+    /**
+     * @return string Guild name
+     *  checks the guild id column, looks for a guild with that name, and returns it
+     */
+
+    public function getguildnameAttribute()
+    {
+        $guildColumn = $this->guild_id;
+        $guild = Guild::where('guild_id',$guildColumn)->first();
+        if($guild->guild_name == "Navy HQ")
+            return 'N/A';
+        else
+          return $guild->guild_name;
+    }
+
+
+
 }
