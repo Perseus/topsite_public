@@ -121,8 +121,8 @@
                                     <ul class="list-unstyled">
                                         <li> <a href="{{ url('admin/news/') }}"> Manage: News </a> </li>
                                         <li> <a href="{{ url('admin/downloads/') }}"> Manage: Downloads </a> </li>
-                                        <li> <a href="{{ url('admin/categories/add') }}"> Manage: Categories </a> </li>
-                                        <li> <a href="{{ url('admin/authors/add') }}"> Manage: Authors </a> </li>
+                                        <li> <a href="{{ url('admin/categories/view/') }}"> Manage: Categories</a> </li>
+                                        <li> <a href="{{ url('admin/authors/view/') }}"> Manage: Authors </a> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -153,11 +153,11 @@
                             <div class="panel-heading"> Server Statistics </div>
                             <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li>   Accounts : <span> 10 </span> </li>
-                                <li>   Characters : <span> 20 </span> </li>
-                                <li>   Guilds : <span> 5 </span> </li>
-                                <li>   Current Online : <span> 15 </span> </li>
-                                <li>   Online record : <span> 20 </span> </li>
+                                <li>   Accounts : <span> {{ $statistics['accounts'] }} </span> </li>
+                                <li>   Characters : <span> {{ $statistics['characters'] }} </span> </li>
+                                <li>   Guilds : <span>{{ $statistics['guild'] }} </span> </li>
+                                <li>   Current Online : <span> {{ $statistics['online'] }} </span> </li>
+                                <li>   Online record : <span> {{ $statistics['max_online'] }} </span> </li>
                             </div>
                         </div>
 
@@ -181,9 +181,14 @@
                             <div class="panel-heading">Staff Online</div>
 
                             <div class="panel-body">    
-                                    None
-                            </div>  
-                        </div>
+                                    @if(count($onlineGMChars) > 0)
+                                        @foreach($onlineGMChars as $char)
+                                            <div class="pull-left"> {{ $char['name'] }} </div> <div class="pull-right text-{{$char['type']}}" > {{ $char['status'] }} </div> <br />
+                                        @endforeach
+                                    @endif
+                            </div>
+
+                       </div>  
                         <div class="panel panel-default">
                             <div class="panel-heading">  Social networks </div>
                                 <div class="panel-body">

@@ -39,13 +39,20 @@ Route::group(['middleware' => ['web']], function() {
 Route::get('/admin/news', 'SiteController@news');
 Route::get('/admin/news/add','SiteController@addNews');
 Route::post('/admin/news/add','SiteController@postNews');
-Route::get('/admin/authors/add','SiteController@addAuthors');
-Route::post('/admin/authors/add','SiteController@postAuthors');
-Route::get('/admin/categories/add','SiteController@addCategories');
-Route::post('/admin/categories/add','SiteController@postCategories');
 Route::get('/admin/news/edit/{id}','SiteController@editNews');
 Route::post('/admin/news/edit/{id}','SiteController@changeNews');
 Route::get('/admin/news/delete/{id}','SiteController@deleteNews');
+
+Route::get('/admin/authors/add','SiteController@addAuthors');
+Route::post('/admin/authors/add','SiteController@postAuthors');
+Route::get('/admin/authors/delete/{type}/{id}','SiteController@deleteAuthor');
+Route::get('/admin/authors/view/{type?}','SiteController@viewAuthors');
+
+Route::get('/admin/categories/add','SiteController@addCategories');
+Route::post('/admin/categories/add','SiteController@postCategories');
+Route::get('/admin/categories/delete/{type}/{id}','SiteController@deleteCategory');
+Route::get('/admin/categories/view/{type?}','SiteController@viewCategories');
+
 
 Route::get('admin/downloads', 'SiteController@downloads');
 Route::get('admin/downloads/add','SiteController@addDownload');
@@ -56,6 +63,7 @@ Route::get('admin/downloads/delete/{id}','SiteController@deleteDownload');
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/index','HomeController@index');
 Route::get('/downloads','HomeController@downloads');
 Route::get('/ranking','HomeController@ranking');
 

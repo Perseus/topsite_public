@@ -41,6 +41,46 @@ class SiteController extends Controller
         return view('admin.site.downloads',compact('downloadItems','messages'));
     }
 
+
+
+
+    /**
+     * view all authors
+     */
+
+    public function viewAuthors($type='')
+    {
+
+        $messages = array();
+        $showMenu = false;
+        switch($type)
+        {
+            case 'downloads':
+                $authors = new DownloadsAuthor;
+                $authors = $authors->all();
+            break;
+            case 'news':
+                 $authors = new NewsAuthor;
+                $authors = $authors->all();
+            break;
+            default:
+                $showMenu = true;
+
+        }
+        if($showMenu == true)
+               return view('admin.site.authviews');
+
+
+        if(!$authors)
+        {
+            $messages[] = ['type' => 'danger',
+                            'heading' => 'Error',
+                            'body' => 'No authors found '];
+        }
+            return view('admin.site.authview',compact('messages','authors','type'));
+    }
+
+
     /**
      * adding authors - GET
      */
@@ -108,6 +148,90 @@ class SiteController extends Controller
     	 	return view('admin.site.authorsadd',compact('messages'));
    	}
 
+       /**
+     * deleting authors
+     */
+     public function deleteAuthor($type,$id)
+    {
+        //check if category exists
+        $messages = array();
+        switch($type)
+        {
+            case 'news':
+                $author = NewsAuthor::where('id',$id);
+            break;
+            case 'download':
+            default:
+                $author = DownloadsAuthor::where('id',$id);
+              
+        }
+
+        if($author != NULL)
+        {
+            $deleted = $author->delete();
+            if($deleted)
+            {
+                if($type == 'download')
+                      $authors = DownloadsAuthor::all();
+                else
+                      $authors = NewsAuthor::all();
+                $messages[] = ['type' => 'danger',
+                                'heading' => 'Deleted successfully',
+                                'body' => 'Author with id'.$id.' was deleted successfully'
+                            ];
+                    return view('admin.site.authview',compact('messages','type','authors'));
+            }
+            else
+            {
+                if($type == 'download')
+                      $authors = DownloadsAuthor::all();
+                else
+                      $authors = NewsAuthor::all();
+                $messages[] = ['type' => 'danger',
+                                'heading' => 'Error',
+                                'body' => 'Author with id'.$id.' was not found'
+                            ];
+                    return view('admin.site.authview',compact('messages','type','authors'));
+
+            }
+        }
+
+    }
+    /**
+     * view all categories
+     */
+
+    public function viewCategories($type='')
+    {
+
+        $messages = array();
+        $showMenu = false;
+        switch($type)
+        {
+            case 'downloads':
+                $categories = new DownloadsCategory;
+                $categories = $categories->all();
+            break;
+            case 'news':
+                 $categories = new NewsCategory;
+                $categories = $categories->all();
+            break;
+            default:
+                $showMenu = true;
+        }
+        if($showMenu)
+            return view('admin.site.catviews');
+
+        if(!$categories)
+        {
+            $messages[] = ['type' => 'danger',
+                            'heading' => 'Error',
+                            'body' => 'No categories found '];
+        }
+
+            return view('admin.site.catview',compact('messages','categories','type'));
+    }
+
     /**
      * adding categories - GET
      */
@@ -173,6 +297,56 @@ class SiteController extends Controller
          }
 
             return view('admin.site.categoriesadd',compact('messages'));
+    }
+
+    /**
+     * deleting categories
+     */
+     public function deleteCategory($type,$id)
+    {
+        //check if category exists
+        $messages = array();
+        switch($type)
+        {
+            case 'news':
+                $categ = NewsCategory::where('id',$id);
+            break;
+            case 'download':
+            default:
+                $categ = DownloadsCategory::where('id',$id);
+              
+        }
+
+        if($categ != NULL)
+        {
+            $deleted = $categ->delete();
+            if($deleted)
+            {
+                if($type == 'download')
+                      $categories = DownloadsCategory::all();
+                else
+                      $categories = NewsCategory::all();
+                $messages[] = ['type' => 'danger',
+                                'heading' => 'Deleted successfully',
+                                'body' => 'Category with id'.$id.' was deleted successfully'
+                            ];
+                    return view('admin.site.catview',compact('messages','type','categories'));
+            }
+            else
+            {
+                if($type == 'download')
+                      $categories = DownloadsCategory::all();
+                else
+                      $categories = NewsCategory::all();
+                $messages[] = ['type' => 'danger',
+                                'heading' => 'Error',
+                                'body' => 'Category with id'.$id.' was not found'
+                            ];
+                    return view('admin.site.catview',compact('messages','type','categories'));
+
+            }
+        }
+
     }
 
    	/**

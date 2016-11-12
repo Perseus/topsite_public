@@ -31,6 +31,7 @@ class HomeController extends Controller
     public function index()
     {
         // 5 news articles per page
+    
         $news = News::paginate(5);
         return view('home',compact('news'));
     }
