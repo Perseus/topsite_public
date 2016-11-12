@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         // 5 news articles per page
     
-        $news = News::paginate(5);
+        $news = News::orderBy('created_at','desc')->paginate(5);
         return view('home',compact('news'));
     }
 
