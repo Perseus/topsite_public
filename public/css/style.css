@@ -1,10 +1,3 @@
-
-.sidebar-nav-fixed {
-	width:10%;
-	background-color: #ffffff;
+ .panel-body  {
+    word-break:break-all
 }
-
-.alert {
-   width:40%;    
-}
-a { color: inherit; background-color: none;} 

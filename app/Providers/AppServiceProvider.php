@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             $gmAccounts[] = $gmAccount->act_id;
         }
         // get all characters that have that act_id that are online.
-        $getOnlineGMChars = Character::whereIn('act_id',$gmAccounts)->get();
+        $getOnlineGMChars = Character::whereIn('act_id',$gmAccounts)->where('delflag',0)->get();
         $onlineGMChars = array();
         foreach($getOnlineGMChars as $GMChar)
         {
