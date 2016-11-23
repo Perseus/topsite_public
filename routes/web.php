@@ -61,9 +61,13 @@ Route::get('admin/downloads/edit/{id}','SiteController@editDownload');
 Route::post('admin/downloads/edit/{id}','SiteController@changeDownload');
 Route::get('admin/downloads/delete/{id}','SiteController@deleteDownload');
 
+Route::get('admin/reports','SiteController@showReports');
+Route::get('admin/report/{id}', 'SiteController@showReport');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/index','HomeController@index');
 Route::get('/downloads','HomeController@downloads');
 Route::get('/ranking','HomeController@ranking');
+Route::get('/contactus','HomeController@contact');
+Route::post('/contactus','HomeController@contactUsPost');
 

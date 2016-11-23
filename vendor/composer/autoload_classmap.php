@@ -6,12 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateDownloadsAuthorsTable' => $baseDir . '/database/migrations/2016_11_02_143737_create_downloads_authors_table.php',
-    'CreateDownloadsCategories' => $baseDir . '/database/migrations/2016_11_05_135036_create_downloads_categories.php',
-    'CreateDownloadsTable' => $baseDir . '/database/migrations/2016_11_02_143740_create_downloads_table.php',
-    'CreateNewsAuthorsTable' => $baseDir . '/database/migrations/2016_11_02_143713_create_news_authors_table.php',
-    'CreateNewsCategories' => $baseDir . '/database/migrations/2016_11_05_135021_create_news_categories.php',
-    'CreateNewsTable' => $baseDir . '/database/migrations/2016_11_02_143715_create_news_table.php',
+    'CreateContactUsTable' => $baseDir . '/database/migrations/GameDB/2016_11_22_163004_create_contact_us_table.php',
+    'CreateDownloadsAuthorsTable' => $baseDir . '/database/migrations/SiteInfo/2016_11_02_143737_create_downloads_authors_table.php',
+    'CreateDownloadsCategories' => $baseDir . '/database/migrations/SiteInfo/2016_11_05_135036_create_downloads_categories.php',
+    'CreateDownloadsTable' => $baseDir . '/database/migrations/SiteInfo/2016_11_02_143740_create_downloads_table.php',
+    'CreateNewsAuthorsTable' => $baseDir . '/database/migrations/SiteInfo/2016_11_02_143713_create_news_authors_table.php',
+    'CreateNewsCategories' => $baseDir . '/database/migrations/SiteInfo/2016_11_05_135021_create_news_categories.php',
+    'CreateNewsTable' => $baseDir . '/database/migrations/SiteInfo/2016_11_02_143715_create_news_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -84,6 +85,8 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+    'Help' => $baseDir . '/database/migrations/2016_11_22_154807_help.php',
+    'Hlep' => $baseDir . '/database/migrations/2016_11_22_154803_hlep.php',
     'PHPUnit\\Framework\\TestCase' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',

@@ -380,12 +380,13 @@ class ComposerStaticInit66d51d3f035d08c9ee0e7fdf45c3531b
     );
 
     public static $classMap = array (
-        'CreateDownloadsAuthorsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_143737_create_downloads_authors_table.php',
-        'CreateDownloadsCategories' => __DIR__ . '/../..' . '/database/migrations/2016_11_05_135036_create_downloads_categories.php',
-        'CreateDownloadsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_143740_create_downloads_table.php',
-        'CreateNewsAuthorsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_143713_create_news_authors_table.php',
-        'CreateNewsCategories' => __DIR__ . '/../..' . '/database/migrations/2016_11_05_135021_create_news_categories.php',
-        'CreateNewsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_143715_create_news_table.php',
+        'CreateContactUsTable' => __DIR__ . '/../..' . '/database/migrations/GameDB/2016_11_22_163004_create_contact_us_table.php',
+        'CreateDownloadsAuthorsTable' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_02_143737_create_downloads_authors_table.php',
+        'CreateDownloadsCategories' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_05_135036_create_downloads_categories.php',
+        'CreateDownloadsTable' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_02_143740_create_downloads_table.php',
+        'CreateNewsAuthorsTable' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_02_143713_create_news_authors_table.php',
+        'CreateNewsCategories' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_05_135021_create_news_categories.php',
+        'CreateNewsTable' => __DIR__ . '/../..' . '/database/migrations/SiteInfo/2016_11_02_143715_create_news_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
@@ -458,6 +459,8 @@ class ComposerStaticInit66d51d3f035d08c9ee0e7fdf45c3531b
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Help' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_154807_help.php',
+        'Hlep' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_154803_hlep.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',

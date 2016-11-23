@@ -7,7 +7,7 @@
         	@if(count($news) > 0)
         		@foreach($news as $article)
         				  <div class="panel panel-default">
-				                <div class="panel-heading">{{ $article->title }}</div>
+				                <div class="panel-heading">[{{$article->type}}]{{ $article->title }}</div>
 
 				                <div class="panel-body"> 
 				                {!! $article->text !!} 

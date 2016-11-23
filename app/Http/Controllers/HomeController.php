@@ -10,6 +10,7 @@ use App\News;
 use App\Downloads;
 use App\Guild;
 use App\AccountLogin;
+use App\ContactUs;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -31,7 +32,7 @@ class HomeController extends Controller
     public function index()
     {
         // 5 news articles per page
-    
+
         $news = News::orderBy('created_at','desc')->paginate(5);
         return view('home',compact('news'));
     }
@@ -73,9 +74,76 @@ class HomeController extends Controller
             {
                 $join->on('character.act_id','=','account.act_id')->where('gm',0)->whereIn('account.act_id',$unbannedAccounts); // make sure they're not gms and they're not banned.
             })->get()->sortByDesc('member_total')->take(30);  // sort as needed and take top 30 results
-    
+
 
         return view('ranking',compact('charactersbyLevel','charactersByGold','charactersByReputation','getGuilds'));
 
+    }
+
+    /**
+     * contact us page
+     * sends post request to @contactUsPost
+     * @return view
+     */
+
+    public function contact()
+    {
+
+        $messages = array();
+
+        return view('contact',compact('messages'));
+    }
+
+    /**
+     * contact us page
+     * receives post request and
+     * adds message to database
+     */
+
+    public function contactUsPost(Request $request)
+    {
+        $messages = array();
+        $errors = array();
+
+        if($request->title == NULL || $request->title == "")
+        {
+            $errors[] = ['type' => 'danger',
+                        'title' => 'Error',
+                        'body' => 'Enter message title' ];
+        }
+        if($request->type == NULL || $request->type == "")
+        {
+            $errors[] = ['type' => 'danger',
+                         'title' => 'Error',
+                          'body' => 'Enter message type '];
+
+        }
+        if($request->body == NULL || $request->body == "")
+        {
+            $errors[] = ['type' => 'danger',
+                         'title' => 'Error',
+                        'body' => 'Enter message'];
+        }
+
+        if(count($errors) > 0)
+        {
+            $messages = $errors;
+            return view('contact',compact('messages'));
+        }
+
+        $report = new ContactUs;
+        $report->title = $request->title;
+        $report->type = $request->type;
+        $report->content = $request->body;
+        $report->read = 0;
+        $report->ip = $request->ip();
+        if($report->save())
+        {
+            $messages[] = ['type' => 'success',
+                            'title' => 'Message sent',
+                            'body' => 'Your report has been submitted! An administrator will review your message and respond as soon as they can!'];
+        }
+
+        return view('contact',compact('messages'));
     }
 }

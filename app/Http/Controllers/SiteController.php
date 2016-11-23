@@ -11,7 +11,8 @@ use App\News;
 use App\NewsAuthor;
 use App\NewsCategory;
 use App\DownloadsCategory;
-
+use App\ContactUs;
+use DB;
 class SiteController extends Controller
 {
     //
@@ -716,4 +717,45 @@ class SiteController extends Controller
             return view('admin.site.downloads',compact('messages','downloadItems'));
     }
 
+    /**
+     * showReports
+     * GET method
+     * displays all the bug reports
+     */
+
+    public function showReports()
+    {
+        $reports = ContactUs::orderBy('created_at')
+                    ->paginate(10);
+
+
+
+
+        return view('admin.reports.showreports',compact('reports'));
+    }
+
+    /**
+     * POST method
+     * shows a particular bug report
+     */
+
+    public function showReport($id)
+    {
+        if(!isset($id) || $id == 0)
+        {
+            abort(404);
+        }
+        $report = ContactUs::where('id',$id)->first();
+        if($report == NULL)
+            abort(404);
+
+        if($report->read == 0)
+        {    
+            $report->read = 1;
+            $report->save();
+        }
+
+
+        return view('admin.reports.showreport',compact('report'));
+    }
 }

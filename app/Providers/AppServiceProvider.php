@@ -7,6 +7,7 @@ use App\Character;
 use App\AccountLogin;
 use App\Guild;
 use App\StatLog;
+use App\ContactUs;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        // get unread bug reports
+        $unread = ContactUs::where('read','!=',1)->count();
             // get all gm accounts
         $getGmAccounts = Account::where('gm',99)->get();
         $gmAccounts = array();
@@ -48,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         // get all statistics!
         view()->share('onlineGMChars',$onlineGMChars);
         view()->share('statistics',$statistics);
+        view()->share('unread',$unread);
         //
     }
 

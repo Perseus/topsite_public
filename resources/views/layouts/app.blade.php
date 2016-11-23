@@ -69,7 +69,13 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} @if(Auth::user()->isAdmin()) 
+                                    @if($unread > 0)
+                                    <span class="badge"> {{ $unread }} </span>
+                                    @endif
+                                    @endif<span class="caret"></span>
+                                      
+
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -84,6 +90,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    @if(Auth::user()->isAdmin())
+                                    <li>
+                                        <a href="{{ url('/admin/reports') }}"> Bug reports <span class="badge"> {{ $unread }} unread</span> </a>
+                                    </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -110,6 +121,7 @@
                               <li>    <a href=" {{ url('/register') }} ">   Register</a>  </li>
                               <li>    <a href=" {{ url('/downloads') }} "> Downloads </a> </li>
                               <li>    <a href=" {{ url('/ranking') }} "> Rankings </a> </li>
+                              <li>    <a href=" {{ url('/contactus') }} "> Contact us </a> </li>
                             </ul>
                             </div>  
                             </div>
@@ -141,6 +153,7 @@
 
                               <li>    <a href=" {{ url('/downloads') }} "> Downloads </a> </li>
                               <li>    <a href=" {{ url('/ranking') }} "> Rankings </a> </li>
+                              <li>    <a href=" {{ url('/contactus') }} "> Contact us </a> </li>
                             </ul>
                             </div>  
                             </div>
