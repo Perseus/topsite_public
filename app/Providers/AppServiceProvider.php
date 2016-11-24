@@ -9,6 +9,7 @@ use App\Guild;
 use App\StatLog;
 use App\ContactUs;
 use Illuminate\Support\ServiceProvider;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,14 @@ class AppServiceProvider extends ServiceProvider
     {
 
         // get unread bug reports
-        $unread = ContactUs::where('read','!=',1)->count();
+        try {
+           $unread = ContactUs::where('read','!=',1)->count();
+        }catch(\Illuminate\Database\QueryException $ex)
+        {
+                Log::info('ContactUs database doesnt exist yet');
+                $unread = '';
+        }
+            
             // get all gm accounts
         $getGmAccounts = Account::where('gm',99)->get();
         $gmAccounts = array();
