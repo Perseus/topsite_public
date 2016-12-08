@@ -23,18 +23,18 @@
 						  			<thead>
 						  				<tr>
 						  					<th>#</th>
-						  					<th> Player name </th>
-						  					<th> Player class </th>
-						  					<th> Player level </th>
-						  					<th> Player type </th>
-						  					<th> Player guild </th>
+						  					<th> Name </th>
+						  					<th> Class </th>
+						  					<th> Level </th>
+						  					<th> Type </th>
+						  					<th> Guild </th>
 						  				</tr>
 						  			</thead>
 						  			<tbody>
 						  				@if(count($charactersbyLevel) > 0)
 						  					@foreach($charactersbyLevel as $character)
 						  						<tr>
-						  							<td> {{ $loop->iteration }} </td>
+						  							<td style="width:50px">  {{ $loop->iteration }} </td>
 						  							<td> {{ $character->cha_name }} </td>
 						  							<td> {{ $character->job }} </td>
 						  							<td> {{ $character->degree }} </td>
@@ -55,22 +55,22 @@
 						  		<br />
 						  			<thead>
 						  				<tr>
-						  					<th>#</th>
-						  					<th> Player name </th>
-						  					<th> Player class </th>
-						  					<th> Player gold </th>
-						  					<th> Player type </th>
-						  					<th> Player guild </th>
+						  				<th>#</th>
+						  					<th> Name </th>
+						  					<th> Class </th>
+						  					<th> Gold </th>
+						  					<th> Type </th>
+						  					<th> Guild </th>
 						  				</tr>
 						  			</thead>
 						  			<tbody>
 									  	@if(count($charactersByGold) > 0)
 						  					@foreach($charactersByGold as $character)
 						  						<tr>
-						  							<td> {{ $loop->iteration }} </td>
+						  							<td style="width:50px"> {{ $loop->iteration }} </td>
 						  							<td> {{ $character->cha_name }} </td>
 						  							<td> {{ $character->job }} </td>
-						  							<td> {{ $character->gd }} </td>
+						  							<td style="width:100px"> {{ $character->gd }} </td>
 						  							<td> {{ $character->chartype }} </td>
 						  							<td> {{ $character->guildname }} </td>
 						  						</tr>
@@ -99,7 +99,7 @@
 									 	@if(count($getGuilds) > 0)
 						  					@foreach($getGuilds as $guild)
 						  						<tr>
-						  							<td> {{ $loop->iteration }} </td>
+						  							<td style="width:50px">  {{ $loop->iteration }} </td>
 						  							<td> {{ $guild->guild_name }} </td>
 						  							<td> {{ $guild->leader_id }} </td>
 						  							<td> {{ $guild->member_total }} </td>
@@ -119,18 +119,18 @@
 						  			<thead>
 						  				<tr>
 						  					<th>#</th>
-						  					<th> Player name </th>
-						  					<th> Player class </th>
-						  					<th> Player reputation </th>
-						  					<th> Player type </th>
-						  					<th> Player guild </th>
+						  					<th> Name </th>
+						  					<th> Class </th>
+						  					<th> Reputation </th>
+						  					<th> Type </th>
+						  					<th> Guild </th>	
 						  				</tr>
 						  			</thead>
 						  			<tbody>
 									  	@if(count($charactersByReputation) > 0)
 						  					@foreach($charactersByReputation as $character)
 						  						<tr>
-						  							<td> {{ $loop->iteration }} </td>
+						  							<td style="width:50px">  {{ $loop->iteration }} </td>
 						  							<td> {{ $character->cha_name }} </td>
 						  							<td> {{ $character->job }} </td>
 						  							<td> {{ $character->credit }} </td>

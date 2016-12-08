@@ -21,6 +21,10 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    
+    <script type="text/javascript">
+    var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   <script>tinymce.init({ selector:'textarea' });</script>
   
@@ -43,9 +47,7 @@
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar">aaaaaaaa</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+
                     </button>
 
                     <!-- Branding Image -->
@@ -79,7 +81,23 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                  
+                                    @if(Auth::user()->isAdmin())
                                     <li>
+                                        <a href="{{ url('/admin/reports') }}"> Bug reports <span class="badge"> {{ $unread }} unread</span> </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/admin/site') }}"> Manage site </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/admin/panel') }}"> Admin panel </a>
+                                    </li>
+                                    @endif
+                                    <li>
+                                        <a href="{{ url('/account') }}"> Manage your account </a>
+                                    </li>
+
+                                      <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -90,11 +108,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    @if(Auth::user()->isAdmin())
-                                    <li>
-                                        <a href="{{ url('/admin/reports') }}"> Bug reports <span class="badge"> {{ $unread }} unread</span> </a>
-                                    </li>
-                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -126,19 +139,7 @@
                             </div>  
                             </div>
                          @else
-                             @if(Auth::user()->isAdmin())
-                            <div class="panel panel-default">
-                                <div class="panel-heading"> Admin pages </div>
-                                <div class="panel-body">
-                                    <ul class="list-unstyled">
-                                        <li> <a href="{{ url('admin/news/') }}"> Manage: News </a> </li>
-                                        <li> <a href="{{ url('admin/downloads/') }}"> Manage: Downloads </a> </li>
-                                        <li> <a href="{{ url('admin/categories/view/') }}"> Manage: Categories</a> </li>
-                                        <li> <a href="{{ url('admin/authors/view/') }}"> Manage: Authors </a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                             @endif
+                            
                            <div class="panel panel-default">
                             <div class="panel-heading"> Account </div>
                             <div class="panel-body">
@@ -245,7 +246,9 @@
 </div>
 
     <!-- Scripts -->
+    <script src=" {{ URL::asset('js/jquery-3.1.1.min.js') }} "></script>
     <script src=" {{ URL::asset('js/app.js') }} "></script>
+    <script src=" {{ URL::asset('js/script.js') }}"></script>
 
 </body>
 </html>

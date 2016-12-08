@@ -20,6 +20,14 @@ class SiteController extends Controller
     {
     	$this->middleware('admin');
     }
+
+
+    public function mainPage()
+    {
+
+
+        return view('admin.site.main');
+    }
     /**
      * news display for admin
      */

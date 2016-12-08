@@ -36,6 +36,8 @@ Route::group(['middleware' => ['web']], function() {
 
 // Site-admin routes
 
+Route::get('/admin/site','SiteController@mainPage');
+
 Route::get('/admin/news', 'SiteController@news');
 Route::get('/admin/news/add','SiteController@addNews');
 Route::post('/admin/news/add','SiteController@postNews');
@@ -64,6 +66,28 @@ Route::get('admin/downloads/delete/{id}','SiteController@deleteDownload');
 Route::get('admin/reports','SiteController@showReports');
 Route::get('admin/report/{id}', 'SiteController@showReport');
 
+
+
+// site-panel routes
+
+Route::get('/admin/panel','PanelController@index');
+
+
+// account-search
+Route::post('/admin/panel/accounts','PanelController@searchAccounts');
+
+// account-display
+Route::get('/admin/panel/account/{id}', 'PanelController@showAccount'); 
+
+
+// ajax account edit routes
+Route::post('/admin/panel/pw/{id}', 'PanelController@ajaxChangePass');
+Route::post('/admin/panel/mail/{id}', 'PanelController@ajaxChangeMail');
+
+
+// character-search
+Route::post('/admin/panel/characters','PanelController@searchCharacters');
+
 Route::get('/home', 'HomeController@index');
 Route::get('/index','HomeController@index');
 Route::get('/downloads','HomeController@downloads');
@@ -71,3 +95,12 @@ Route::get('/ranking','HomeController@ranking');
 Route::get('/contactus','HomeController@contact');
 Route::post('/contactus','HomeController@contactUsPost');
 
+
+
+// user-account routes
+
+Route::get('/account','UserController@accountPage');
+Route::get('/account/changepw', 'UserController@changePass');
+Route::post('/account/changepw','UserController@editPass');
+Route::get('/account/changemail', 'UserController@changeMail');
+Route::post('/account/changemail','UserController@editMail');
